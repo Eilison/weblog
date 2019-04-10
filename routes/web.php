@@ -35,6 +35,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('comments', 'UserController@comments');
         Route::get('following', 'UserController@following');
         Route::get('discussions', 'UserController@discussions');
+        Route::get('articles', 'UserController@articles');
     });
 });
 

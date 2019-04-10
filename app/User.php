@@ -95,4 +95,8 @@ class User extends Authenticatable
             return $this->email;
         }
     }
+
+    public function articles() {
+        return $this->hasMany(Article::class)->orderBy('created_at', 'desc');
+    }
 }

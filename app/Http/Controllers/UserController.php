@@ -47,8 +47,9 @@ class UserController extends Controller
 
         $discussions = $user->discussions->take(10);
         $comments = $user->comments->take(10);
+        $articles = $user->articles->take(10);
 
-        return view('user.index', compact('user', 'discussions', 'comments'));
+        return view('user.index', compact('user', 'discussions', 'comments', 'articles'));
     }
 
     /**
@@ -208,5 +209,15 @@ class UserController extends Controller
         $user->unreadNotifications->markAsRead();
 
         return view('user.notifications', compact('user'));
+    }
+
+    public function articles($username) {
+        $user = $this->user->getByName($username);
+
+        if (!isset($user)) abort(404);
+
+        $articles = $user->articles;
+
+        return view('user.articles', compact('user', 'articles'));
     }
 }

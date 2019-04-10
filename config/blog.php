@@ -19,8 +19,8 @@ return [
 
     // Social Share
     'social_share' => [
-        'article_share'    => env('ARTICLE_SHARE') ?: true,
-        'discussion_share' => env('DISCUSSION_SHARE') ?: true,
+        'article_share'    => env('ARTICLE_SHARE') ?: false,
+        'discussion_share' => env('DISCUSSION_SHARE') ?: false,
         'sites'            => env('SOCIAL_SHARE_SITES') ?: 'google,twitter,facebook',
         'mobile_sites'     => env('SOCIAL_SHARE_MOBILE_SITES') ?: 'google,twitter,facebook',
     ],
