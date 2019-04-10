@@ -32,7 +32,7 @@
                             <i class="ion-clock"></i>{{ $article->published_at->diffForHumans() }}&nbsp;,&nbsp;
                             <i class="ion-ios-eye"></i>{{ $article->view_count }}
                             <a href="{{ url($article->slug) }}" class="pull-right">
-                                Read More <i class="ion-ios-arrow-forward"></i>
+                                更多 <i class="ion-ios-arrow-forward"></i>
                             </a>
                         </div>
                     </div>

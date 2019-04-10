@@ -156,8 +156,12 @@ export default {
     },
     watch: {
         article() {
-            this.selected = this.article.category.data
-            this.tags     = this.article.tags.data
+            if (this.article.category) {
+                this.selected = this.article.category.data
+            }
+            if (this.article.tags) {
+                this.tags     = this.article.tags.data
+            }
             this.simplemde.value(this.article.content)
             this.startTime.time = this.article.published_time
         }

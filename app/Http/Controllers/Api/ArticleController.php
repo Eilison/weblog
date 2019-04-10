@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ArticleRequest;
 use App\Repositories\ArticleRepository;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends ApiController
 {
@@ -23,7 +24,13 @@ class ArticleController extends ApiController
      */
     public function index()
     {
-        return $this->response->collection($this->article->page());
+        $model = $this->article->checkAuthScope();
+
+        if (!Auth::user()->is_admin){
+            $model = $model->where("user_id", Auth::id());
+        }
+
+        return $this->response->collection($model->orderBy("created_at", "desc")->paginate(10));
     }
 
     /**

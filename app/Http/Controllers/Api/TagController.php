@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Requests\TagRequest;
 use App\Repositories\TagRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends ApiController
 {
@@ -24,7 +25,7 @@ class TagController extends ApiController
      */
     public function index()
     {
-        return $this->response->collection($this->tag->page());
+        return $this->response->collection($this->tag->getTagsByAuth());
     }
 
     /**
@@ -46,7 +47,11 @@ class TagController extends ApiController
      */
     public function store(TagRequest $request)
     {
-        $this->tag->store($request->all());
+        $data = array_merge($request->all(), [
+            'user_id'      => Auth::id()
+        ]);
+
+        $this->tag->store($data);
 
         return $this->response->withNoContent();
     }

@@ -31,17 +31,22 @@
 </template>
 
 <script>
-    import menus from '../../../config/menu.js'
+    // import menus from '../../../config/menu.js'
 
     export default {
         data () {
             return {
-                menus: menus,
+                menus: [],
                 user: {}
             }
         },
         mounted() {
             this.user = window.User
+
+            this.$http.get('menus/')
+                .then((response) => {
+                    this.menus = response.data
+                })
         },
         computed: {
             userInfo() {

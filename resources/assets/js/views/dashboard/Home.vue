@@ -5,13 +5,13 @@
                 <div class="ibox">
                     <div class="ibox-title ibox-warning">
                         <span class="label label-warning pull-right">{{ $t('page.admin') }}</span>
-                        <h5 class="no-margins">Notice For Everyone.</h5>
+                        <h5 class="no-margins">{{title}}.</h5>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div v-if="statistics.users" class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ibox">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">{{ $t('page.all') }}</span>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div v-if="statistics.visitors" class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ibox">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">{{ $t('page.all') }}</span>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div v-if="statistics.articles" class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ibox">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">{{ $t('page.all') }}</span>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div v-if="statistics.comments" class="col-md-3 col-sm-6 col-xs-12">
                 <div class="ibox">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">{{ $t('page.all') }}</span>
@@ -68,6 +68,7 @@ export default {
     },
     data () {
         return {
+            title: "欢迎登陆",
             statistics: {}
         }
     },

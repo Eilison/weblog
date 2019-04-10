@@ -57,7 +57,7 @@
                         <ul class="dropdown-menu text-center" role="menu">
                             <li><a href="{{ url('user', ['name' => Auth::user()->name]) }}"><i class="ion-person"></i>{{ lang('Personal Center') }}</a></li>
                             <li><a href="{{ url('setting') }}"><i class="ion-gear-b"></i>{{ lang('Settings') }}</a></li>
-                            @if(Auth::user()->is_admin)
+                            @if(Auth::user()->status == 1)
                                 <li><a href="{{ url('dashboard') }}"><i class="ion-ios-speedometer"></i>{{ lang('Dashboard') }}</a></li>
                             @endif
                             <li class="divider"></li>

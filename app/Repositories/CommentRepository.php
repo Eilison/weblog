@@ -6,6 +6,7 @@ use App\Comment;
 use App\Tools\Mention;
 use App\Notifications\GotVote;
 use App\Notifications\MentionedUser;
+use Illuminate\Support\Facades\Auth;
 
 class CommentRepository
 {
@@ -117,5 +118,14 @@ class CommentRepository
         $user->{$type . 'Vote'}($target);
 
         return true;
+    }
+
+    public function getCommentsByAuth() {
+        $user = Auth::user();
+
+        if (!$user->is_admin) {
+            $this->model = $this->model->where("user_id", $user->id);
+        }
+        return $this->page();
     }
 }

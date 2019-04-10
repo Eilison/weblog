@@ -26,7 +26,7 @@ class CommentController extends ApiController
      */
     public function index()
     {
-        return $this->response->collection($this->comment->page());
+        return $this->response->collection($this->comment->getCommentsByAuth());
     }
 
     /**

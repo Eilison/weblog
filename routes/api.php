@@ -1,13 +1,13 @@
 <?php
 
 Route::group([
-    'middleware' => ['auth:api', 'admin'],
+    'middleware' => ['auth:api'],
     'namespace' => 'Api',
-], function () {
+], function() {
+
     Route::get('statistics', 'HomeController@statistics');
 
-    Route::resource('user', 'UserController', ['except' => ['create', 'show']]);
-    Route::post('/user/{id}/status', 'UserController@status');
+    Route::get("menus", "HomeController@menus");
 
     Route::resource('article', 'ArticleController', ['names' => [
         'index' => 'api.article.index',
@@ -17,17 +17,27 @@ Route::group([
         'destroy' => 'api.article.destroy',
     ],'except' => ['create', 'show']]);
 
-    Route::resource('category', 'CategoryController', ['except' => ['create', 'show']]);
-    Route::get('/categories', 'CategoryController@getList');
-    Route::post('/category/{id}/status', 'CategoryController@status');
+    Route::resource('comment', 'CommentController', ['except' => ['create']]);
 
     Route::resource('discussion', 'DiscussionController', ['except' => ['create', 'show']]);
     Route::post('/discussion/{id}/status', 'DiscussionController@status');
 
-    Route::resource('comment', 'CommentController', ['except' => ['create']]);
+    Route::get('/categories', 'CategoryController@getList');
 
     Route::resource('tag', 'TagController', ['except' => ['create', 'show']]);
     Route::post('/tag/{id}/status', 'TagController@status');
+});
+
+Route::group([
+    'middleware' => ['auth:api', 'admin'],
+    'namespace' => 'Api',
+], function () {
+
+    Route::resource('user', 'UserController', ['except' => ['create', 'show']]);
+    Route::post('/user/{id}/status', 'UserController@status');
+
+    Route::resource('category', 'CategoryController', ['except' => ['create', 'show']]);
+    Route::post('/category/{id}/status', 'CategoryController@status');
 
     Route::resource('link', 'LinkController', ['except' => ['create', 'show']]);
     Route::post('/link/{id}/status', 'LinkController@status');
